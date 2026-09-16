@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Dashboard – GugsLocalConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+        <path d="M120 20 C 76 20, 40 56, 40 100 C 40 150, 120 240, 120 240 C 120 240, 200 150, 200 100 C 200 56, 164 20, 120 20 Z" fill="#343B73"/>
+        <circle cx="120" cy="100" r="42" fill="#F5EECB"/>
+        <circle cx="120" cy="100" r="22" fill="none" stroke="#B4CA9E" stroke-width="6"/>
+        <circle cx="120" cy="100" r="8" fill="#B4CA9E"/>
+      </svg>
+      <span class="logo-text">GugsLocal<span class="logo-accent">Connect</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="dashboard-business.html" class="active">Dashboard</a>
+      <a href="my-services.html">My Services</a>
+      <a href="messages.html">Messages</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="index.html" class="btn-outline">Log out</a>
+    </div>
+  </header>
+
+  <section class="dashboard-hero business">
+    <div class="dashboard-inner">
+      <h1>Welcome, Lutho</h1>
+      <p>Here's your business overview.</p>
+      <a href="add-service.html" class="btn-primary">+ Add new service</a>
+    </div>
+  </section>
+
+  <section class="dash-section">
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-num">124</span><span class="stat-label">Total views</span></div>
+      <div class="stat-card"><span class="stat-num">18</span><span class="stat-label">Messages</span></div>
+      <div class="stat-card"><span class="stat-num">56</span><span class="stat-label">Service views</span></div>
+      <div class="stat-card"><span class="stat-num">32</span><span class="stat-label">Bookings</span></div>
+    </div>
+  </section>
+
+  <section class="dash-section">
+    <div class="dash-head"><h2>Quick actions</h2></div>
+    <div class="quick-actions">
+      <a href="add-service.html" class="action-card">+ Add service</a>
+      <a href="my-services.html" class="action-card">Manage services</a>
+      <a href="messages.html" class="action-card">View messages</a>
+      <a href="business.html" class="action-card">View public profile</a>
+    </div>
+  </section>
+
+  <section class="dash-section">
+    <div class="dash-head">
+      <h2>Recent inquiries</h2>
+      <a href="messages.html" class="link-arrow">See all →</a>
+    </div>
+    <div class="booking-list">
+      <div class="booking-item">
+        <div>
+          <h4>Sipho M.</h4>
+          <p>Hi, I need help with my sink.</p>
+        </div>
+        <span class="chat-time">10:30</span>
+      </div>
+      <div class="booking-item">
+        <div>
+          <h4>Thandi K.</h4>
+          <p>How much for installation?</p>
+        </div>
+        <span class="chat-time">09:15</span>
+      </div>
+      <div class="booking-item">
+        <div>
+          <h4>Lerato D.</h4>
+          <p>Do you do emergency calls?</p>
+        </div>
+        <span class="chat-time">Yesterday</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg class="logo-mark small" viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+          <path d="M120 20 C 76 20, 40 56, 40 100 C 40 150, 120 240, 120 240 C 120 240, 200 150, 200 100 C 200 56, 164 20, 120 20 Z" fill="#F5EECB"/>
+          <circle cx="120" cy="100" r="42" fill="#343B73"/>
+          <circle cx="120" cy="100" r="22" fill="none" stroke="#B4CA9E" stroke-width="6"/>
+          <circle cx="120" cy="100" r="8" fill="#B4CA9E"/>
+        </svg>
+        <div><h3>GugsLocalConnect</h3><p>Find local. Support local.</p></div>
+      </div>
+      <p class="footer-copy">© 2026 GugsLocalConnect. Built for Gugulethu.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – GugsLocalConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+        <path d="M120 20 C 76 20, 40 56, 40 100 C 40 150, 120 240, 120 240 C 120 240, 200 150, 200 100 C 200 56, 164 20, 120 20 Z" fill="#343B73"/>
+        <circle cx="120" cy="100" r="42" fill="#F5EECB"/>
+        <circle cx="120" cy="100" r="22" fill="none" stroke="#B4CA9E" stroke-width="6"/>
+        <circle cx="120" cy="100" r="8" fill="#B4CA9E"/>
+      </svg>
+      <span class="logo-text">GugsLocal<span class="logo-accent">Connect</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="search.html">Browse</a>
+      <a href="chat.html">Messages</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="index.html" class="btn-outline">Log out</a>
+    </div>
+  </header>
+
+  <section class="dashboard-hero">
+    <div class="dashboard-inner">
+      <h1>Hi Vuyelwa</h1>
+      <p>Find trusted local services in Gugulethu.</p>
+
+      <form class="search-box" onsubmit="event.preventDefault(); window.location.href='search.html';">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+        </svg>
+        <input type="text" placeholder="What service are you looking for?">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="dash-section">
+    <div class="dash-head">
+      <h2>Popular categories</h2>
+      <a href="search.html" class="link-arrow">See all →</a>
+    </div>
+    <div class="category-grid">
+      <a href="search.html" class="category-card"><svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/></svg><span>Hairdressing</span></a>
+      <a href="search.html" class="category-card"><svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="1.8"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3z"/></svg><span>Catering</span></a>
+      <a href="search.html" class="category-card"><svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg><span>Tutoring</span></a>
+      <a href="search.html" class="category-card"><svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span>Plumbing</span></a>
+      <a href="search.html" class="category-card"><svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="1.8"><path d="M15 12l-8.5 8.5a2.12 2.12 0 0 1-3-3L12 9"/><path d="M17.64 15L22 10.64"/></svg><span>Carpentry</span></a>
+      <a href="search.html" class="category-card"><svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="1.8"><path d="M12 3l1.9 5.8L20 10l-5.8 1.9L12 18l-2.1-6.1L4 10l6.1-1.2z"/></svg><span>Cleaning</span></a>
+    </div>
+  </section>
+
+  <section class="dash-section">
+    <div class="dash-head">
+      <h2>Near you</h2>
+      <a href="search.html" class="link-arrow">See all →</a>
+    </div>
+    <div class="business-grid">
+      <article class="business-card">
+        <div class="business-image" style="background:linear-gradient(135deg,#B4CA9E,#8FA87C);"></div>
+        <div class="business-body">
+          <span class="tag">Hairdressing</span>
+          <h3>Thandi's Hair Studio</h3>
+          <p class="location">NY 108, Gugulethu</p>
+          <div class="business-foot">
+            <span class="rating">★ 4.8 <em>(23)</em></span>
+            <a href="business.html" class="btn-small">View</a>
+          </div>
+        </div>
+      </article>
+      <article class="business-card">
+        <div class="business-image" style="background:linear-gradient(135deg,#D8C99E,#C0AE7A);"></div>
+        <div class="business-body">
+          <span class="tag">Catering</span>
+          <h3>Mama Nomsa's Kitchen</h3>
+          <p class="location">Section 3, Gugulethu</p>
+          <div class="business-foot">
+            <span class="rating">★ 4.9 <em>(41)</em></span>
+            <a href="business.html" class="btn-small">View</a>
+          </div>
+        </div>
+      </article>
+      <article class="business-card">
+        <div class="business-image" style="background:linear-gradient(135deg,#343B73,#5A628F);"></div>
+        <div class="business-body">
+          <span class="tag">Tutoring</span>
+          <h3>Sipho's Maths Tutoring</h3>
+          <p class="location">Guguletu, Cape Town</p>
+          <div class="business-foot">
+            <span class="rating">★ 4.6 <em>(15)</em></span>
+            <a href="business.html" class="btn-small">View</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="dash-section">
+    <div class="dash-head"><h2>Your recent bookings</h2></div>
+    <div class="booking-list">
+      <div class="booking-item">
+        <div>
+          <h4>Thandi's Hair Studio</h4>
+          <p>Braiding session · 20 Sep 2026 · 10:00</p>
+        </div>
+        <span class="status confirmed">Confirmed</span>
+      </div>
+      <div class="booking-item">
+        <div>
+          <h4>Mama Nomsa's Kitchen</h4>
+          <p>Catering quote · 25 Sep 2026</p>
+        </div>
+        <span class="status pending">Pending</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg class="logo-mark small" viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
+          <path d="M120 20 C 76 20, 40 56, 40 100 C 40 150, 120 240, 120 240 C 120 240, 200 150, 200 100 C 200 56, 164 20, 120 20 Z" fill="#F5EECB"/>
+          <circle cx="120" cy="100" r="42" fill="#343B73"/>
+          <circle cx="120" cy="100" r="22" fill="none" stroke="#B4CA9E" stroke-width="6"/>
+          <circle cx="120" cy="100" r="8" fill="#B4CA9E"/>
+        </svg>
+        <div><h3>GugsLocalConnect</h3><p>Find local. Support local.</p></div>
+      </div>
+      <p class="footer-copy">© 2026 GugsLocalConnect. Built for Gugulethu.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
