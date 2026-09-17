@@ -52,7 +52,7 @@
         <p class="auth-sub">Log in to find and book local services.</p>
       </div>
 
-      <form class="auth-form" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+      <form id="customerLoginForm" class="auth-form">
 
         <label for="email">Email or phone number</label>
         <input type="text" id="email" placeholder="you@example.com" required>
@@ -62,6 +62,8 @@
           <a href="#" class="forgot-link">Forgot password?</a>
         </div>
         <input type="password" id="password" placeholder="Enter your password" required>
+
+        <p id="loginError" class="error-message" style="color:#c0392b; display:none; margin: 8px 0 0;"></p>
 
         <button type="submit" class="btn-primary btn-full">Log in</button>
       </form>
@@ -124,6 +126,36 @@
       <p class="footer-copy">© 2026 GugsLocalConnect. Built for Gugulethu.</p>
     </div>
   </footer>
+
+  <script src="api.js"></script>
+  <script>
+    document.getElementById("customerLoginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const errorEl = document.getElementById("loginError");
+      errorEl.style.display = "none";
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const user = await loginUser(email, password);
+
+        // NOTE: adjust "Customer" below to match your Role enum's exact casing
+        if (user.role !== "Customer") {
+          errorEl.textContent = "This account isn't registered as a Customer.";
+          errorEl.style.display = "block";
+          return;
+        }
+
+        sessionStorage.setItem("loggedInUser", JSON.stringify(user));
+        window.location.href = "dashboard.html";
+      } catch (err) {
+        errorEl.textContent = "Login failed: " + err.message;
+        errorEl.style.display = "block";
+      }
+    });
+  </script>
 
 </body>
 </html>
