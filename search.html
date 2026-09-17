@@ -22,21 +22,22 @@
       <span class="logo-text">GugsLocal<span class="logo-accent">Connect</span></span>
     </a>
     <nav class="nav-links">
-      <a href="dashboard.html">Dashboard</a>
+      <a href="index.html">Home</a>
       <a href="search.html" class="active">Browse</a>
-      <a href="chat.html">Messages</a>
+      <a href="index.html#how">How it works</a>
     </nav>
     <div class="nav-actions">
-      <a href="index.html" class="btn-outline">Log out</a>
+      <a href="login.html" class="btn-outline">Log in</a>
+      <a href="signup.html" class="btn-primary">Sign up</a>
     </div>
   </header>
 
   <section class="search-topbar">
-    <form class="search-box compact" onsubmit="event.preventDefault();">
+    <form class="search-box compact" id="searchForm">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="2">
         <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
       </svg>
-      <input type="text" value="plumbing" placeholder="Search services">
+      <input type="text" id="searchInput" placeholder="Search services">
       <button type="submit">Search</button>
     </form>
   </section>
@@ -45,96 +46,44 @@
     <aside class="filter-sidebar">
       <h3>Filters</h3>
 
-      <div class="filter-group">
+      <div class="filter-group" id="categoryFilters">
         <h4>Category</h4>
-        <label><input type="checkbox" checked> Plumbing</label>
-        <label><input type="checkbox"> Hairdressing</label>
-        <label><input type="checkbox"> Catering</label>
-        <label><input type="checkbox"> Tutoring</label>
-        <label><input type="checkbox"> Carpentry</label>
-        <label><input type="checkbox"> Cleaning</label>
+        <label><input type="checkbox" class="filter-category" value="Plumbing"> Plumbing</label>
+        <label><input type="checkbox" class="filter-category" value="Hairdressing"> Hairdressing</label>
+        <label><input type="checkbox" class="filter-category" value="Catering"> Catering</label>
+        <label><input type="checkbox" class="filter-category" value="Tutoring"> Tutoring</label>
+        <label><input type="checkbox" class="filter-category" value="Carpentry"> Carpentry</label>
+        <label><input type="checkbox" class="filter-category" value="Cleaning"> Cleaning</label>
       </div>
 
       <div class="filter-group">
         <h4>Location</h4>
-        <select>
-          <option>All areas</option>
-          <option>NY 108</option>
-          <option>Section 3</option>
-          <option>Gugulethu Central</option>
+        <select id="locationFilter">
+          <option value="">All areas</option>
+          <option value="NY 108">NY 108</option>
+          <option value="Section 3">Section 3</option>
+          <option value="Gugulethu Central">Gugulethu Central</option>
         </select>
       </div>
 
       <div class="filter-group">
         <h4>Rating</h4>
-        <label><input type="radio" name="rating"> 4.5 and above</label>
-        <label><input type="radio" name="rating"> 4.0 and above</label>
-        <label><input type="radio" name="rating" checked> Any</label>
+        <label><input type="radio" name="rating" class="filter-rating" value="4.5"> 4.5 and above</label>
+        <label><input type="radio" name="rating" class="filter-rating" value="4.0"> 4.0 and above</label>
+        <label><input type="radio" name="rating" class="filter-rating" value="0" checked> Any</label>
       </div>
     </aside>
 
     <div class="results">
       <div class="results-head">
-        <p><strong>12 results</strong> found</p>
-        <select class="sort">
-          <option>Sort: Recommended</option>
-          <option>Highest rated</option>
-          <option>Nearest</option>
+        <p><strong id="resultsCount">6</strong> results found</p>
+        <select class="sort" id="sortSelect">
+          <option value="recommended">Sort: Recommended</option>
+          <option value="rating">Highest rated</option>
         </select>
       </div>
 
-      <div class="results-list">
-        <article class="result-card">
-          <div class="result-thumb" style="background:linear-gradient(135deg,#B4CA9E,#8FA87C);"></div>
-          <div class="result-body">
-            <div class="result-top">
-              <h3>Lutho Plumbing Services</h3>
-              <span class="rating">★ 4.6 <em>(32)</em></span>
-            </div>
-            <span class="tag">Plumbing</span>
-            <p class="location">Gugulethu</p>
-            <p class="result-desc">Reliable plumbing services including installation, maintenance and emergency repairs.</p>
-            <div class="result-actions">
-              <a href="business.html" class="btn-small">View profile</a>
-              <a href="chat.html" class="btn-outline">Message</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="result-card">
-          <div class="result-thumb" style="background:linear-gradient(135deg,#D8C99E,#C0AE7A);"></div>
-          <div class="result-body">
-            <div class="result-top">
-              <h3>Slyabonga Plumbing</h3>
-              <span class="rating">★ 4.4 <em>(18)</em></span>
-            </div>
-            <span class="tag">Plumbing</span>
-            <p class="location">Gugulethu</p>
-            <p class="result-desc">Affordable plumbing repairs and installations across the community.</p>
-            <div class="result-actions">
-              <a href="business.html" class="btn-small">View profile</a>
-              <a href="chat.html" class="btn-outline">Message</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="result-card">
-          <div class="result-thumb" style="background:linear-gradient(135deg,#343B73,#5A628F);"></div>
-          <div class="result-body">
-            <div class="result-top">
-              <h3>Mandla Plumbing</h3>
-              <span class="rating">★ 4.7 <em>(27)</em></span>
-            </div>
-            <span class="tag">Plumbing</span>
-            <p class="location">Gugulethu</p>
-            <p class="result-desc">Leak detection, pipe installation, bathroom renovations and general plumbing.</p>
-            <div class="result-actions">
-              <a href="business.html" class="btn-small">View profile</a>
-              <a href="chat.html" class="btn-outline">Message</a>
-            </div>
-          </div>
-        </article>
-      </div>
+      <div class="browse-grid" id="browseGrid"></div>
     </div>
   </section>
 
@@ -153,5 +102,7 @@
     </div>
   </footer>
 
+  <script src="data.js"></script>
+  <script src="search.js"></script>
 </body>
 </html>
