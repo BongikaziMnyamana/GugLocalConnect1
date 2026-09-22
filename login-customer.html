@@ -127,35 +127,6 @@
     </div>
   </footer>
 
-  <script src="api.js"></script>
-  <script>
-    document.getElementById("customerLoginForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const errorEl = document.getElementById("loginError");
-      errorEl.style.display = "none";
-
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      try {
-        const user = await loginUser(email, password);
-
-        // NOTE: adjust "Customer" below to match your Role enum's exact casing
-        if (user.role !== "Customer") {
-          errorEl.textContent = "This account isn't registered as a Customer.";
-          errorEl.style.display = "block";
-          return;
-        }
-
-        sessionStorage.setItem("loggedInUser", JSON.stringify(user));
-        window.location.href = "dashboard.html";
-      } catch (err) {
-        errorEl.textContent = "Login failed: " + err.message;
-        errorEl.style.display = "block";
-      }
-    });
-  </script>
-
+  <script src="js/customer-login.js"></script>
 </body>
 </html>

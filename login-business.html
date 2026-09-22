@@ -129,35 +129,7 @@
     </div>
   </footer>
 
-  <script src="api.js"></script>
-  <script>
-    document.getElementById("businessLoginForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const errorEl = document.getElementById("loginError");
-      errorEl.style.display = "none";
-
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      try {
-        const user = await loginUser(email, password);
-
-        // NOTE: adjust "Business_Owner" below to match your Role enum's exact casing
-        if (user.role !== "Business_Owner") {
-          errorEl.textContent = "This account isn't registered as a Business Owner.";
-          errorEl.style.display = "block";
-          return;
-        }
-
-        sessionStorage.setItem("loggedInUser", JSON.stringify(user));
-        window.location.href = "dashboard-business.html";
-      } catch (err) {
-        errorEl.textContent = "Login failed: " + err.message;
-        errorEl.style.display = "block";
-      }
-    });
-  </script>
+  <script src="js/business-login.js"></script>
 
 </body>
 </html>
