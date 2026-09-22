@@ -18,12 +18,12 @@ signupForm.addEventListener("submit", async function (event) {
     const customer = {
         name: name,
         email: email,
-        passwordd: password,
+        password: password,
         phone: phone
     };
 
     try {
-        const response = await fetch("http://localhost:8080/users/create-customer", {
+        const response = await fetch("http://localhost:8080/users/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
