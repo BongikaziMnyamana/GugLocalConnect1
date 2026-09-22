@@ -11,7 +11,6 @@
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <a href="index.html" class="logo">
       <svg class="logo-mark" viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg">
@@ -22,26 +21,22 @@
       </svg>
       <span class="logo-text">GugsLocal<span class="logo-accent">Connect</span></span>
     </a>
-
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="search.html">Browse</a>
       <a href="index.html#how">How it works</a>
     </nav>
-
     <div class="nav-actions">
       <a href="signup.html" class="btn-primary">Sign up</a>
     </div>
   </header>
 
-  <!-- ===== CUSTOMER LOGIN ===== -->
   <section class="auth-section">
     <div class="auth-card">
-
       <a href="login.html" class="back-link">← Back</a>
 
       <div class="auth-head">
-        <span class="auth-badge customer">
+        <span class="auth-badge">
           <svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="2">
             <circle cx="12" cy="8" r="4"/>
             <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
@@ -52,8 +47,7 @@
         <p class="auth-sub">Log in to find and book local services.</p>
       </div>
 
-      <form class="auth-form" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
-
+      <form class="auth-form" id="loginForm">
         <label for="email">Email or phone number</label>
         <input type="text" id="email" placeholder="you@example.com" required>
 
@@ -73,40 +67,29 @@
       <p class="auth-switch">
         Are you a business owner? <a href="login-business.html">Log in here</a>
       </p>
-
     </div>
 
-    <!-- Side panel -->
     <div class="auth-side">
       <h2>Find trusted services<br>right in your community.</h2>
       <p>Browse hairdressers, caterers, tutors, plumbers and more — all verified and reviewed by your neighbours in Gugulethu.</p>
 
       <div class="auth-side-features">
         <div class="feature-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
           <span>Search by category or location</span>
         </div>
         <div class="feature-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-            <path d="M9 12l2 2 4-4"/>
-            <circle cx="12" cy="12" r="9"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
           <span>Verified businesses and reviews</span>
         </div>
         <div class="feature-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <span>Message providers directly</span>
         </div>
       </div>
     </div>
-
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
@@ -116,14 +99,32 @@
           <circle cx="120" cy="100" r="22" fill="none" stroke="#B4CA9E" stroke-width="6"/>
           <circle cx="120" cy="100" r="8" fill="#B4CA9E"/>
         </svg>
-        <div>
-          <h3>GugsLocalConnect</h3>
-          <p>Find local. Support local.</p>
-        </div>
+        <div><h3>GugsLocalConnect</h3><p>Find local. Support local.</p></div>
       </div>
       <p class="footer-copy">© 2026 GugsLocalConnect. Built for Gugulethu.</p>
     </div>
   </footer>
+
+  <script src="data.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const button = e.target.querySelector('button[type="submit"]');
+      button.textContent = 'Logging in...';
+      button.disabled = true;
+
+      try {
+        await window.glcAPI.login(email, password);
+        window.location.href = 'dashboard.html';
+      } catch (err) {
+        alert('Login failed: ' + err.message);
+        button.textContent = 'Log in';
+        button.disabled = false;
+      }
+    });
+  </script>
 
 </body>
 </html>

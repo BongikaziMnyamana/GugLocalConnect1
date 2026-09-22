@@ -37,19 +37,14 @@
 
       <div class="auth-head">
         <span class="auth-badge business">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#C77B4E" stroke-width="2">
-            <path d="M3 21h18"/>
-            <path d="M5 21V7l7-4 7 4v14"/>
-            <path d="M9 21v-6h6v6"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C77B4E" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
           Business Owner
         </span>
         <h1>List your business</h1>
         <p class="auth-sub">Create your account and start reaching more customers.</p>
       </div>
 
-      <form class="auth-form" onsubmit="event.preventDefault(); window.location.href='dashboard-business.html';">
-
+      <form class="auth-form" id="signupForm">
         <h3 class="form-section-title">Your details</h3>
 
         <label for="fullname">Full name</label>
@@ -64,16 +59,13 @@
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Create a password" required>
 
-        <label for="confirm">Confirm password</label>
-        <input type="password" id="confirm" placeholder="Re-enter your password" required>
-
         <h3 class="form-section-title">Business details</h3>
 
         <label for="bizname">Business name</label>
-        <input type="text" id="bizname" placeholder="e.g. Thandi's Hair Studio" required>
+        <input type="text" id="bizname" placeholder="e.g. Thandi's Hair Studio">
 
         <label for="category">Category</label>
-        <select id="category" required>
+        <select id="category">
           <option value="">Select a category</option>
           <option>Hairdressing</option>
           <option>Catering</option>
@@ -81,49 +73,25 @@
           <option>Plumbing</option>
           <option>Carpentry</option>
           <option>Cleaning</option>
-          <option>Other</option>
         </select>
 
         <label for="location">Location in Gugulethu</label>
-        <input type="text" id="location" placeholder="e.g. NY 108, Gugulethu" required>
-
-        <label for="description">Short description</label>
-        <textarea id="description" rows="4" placeholder="Tell customers what you offer" required></textarea>
+        <input type="text" id="location" placeholder="e.g. NY 108, Gugulethu">
 
         <button type="submit" class="btn-primary btn-full">Create business account</button>
       </form>
 
-      <p class="auth-footer">
-        Already have an account? <a href="login-business.html">Log in</a>
-      </p>
-
-      <p class="auth-switch">
-        Want to book instead? <a href="signup-customer.html">Register as Customer</a>
-      </p>
+      <p class="auth-footer">Already have an account? <a href="login-business.html">Log in</a></p>
+      <p class="auth-switch">Want to book instead? <a href="signup-customer.html">Register as Customer</a></p>
     </div>
 
     <div class="auth-side">
       <h2>Grow your business<br>in your community.</h2>
       <p>List your services on GugsLocalConnect and reach more customers in Gugulethu. Free to start.</p>
       <div class="auth-side-features">
-        <div class="feature-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-            <path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/>
-          </svg>
-          <span>Free business profile</span>
-        </div>
-        <div class="feature-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-          <span>Direct customer inquiries</span>
-        </div>
-        <div class="feature-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-            <path d="M12 2v20M2 12h20"/>
-          </svg>
-          <span>Add and manage services</span>
-        </div>
+        <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg><span>Free business profile</span></div>
+        <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Direct customer inquiries</span></div>
+        <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg><span>Add and manage services</span></div>
       </div>
     </div>
   </section>
@@ -137,14 +105,37 @@
           <circle cx="120" cy="100" r="22" fill="none" stroke="#B4CA9E" stroke-width="6"/>
           <circle cx="120" cy="100" r="8" fill="#B4CA9E"/>
         </svg>
-        <div>
-          <h3>GugsLocalConnect</h3>
-          <p>Find local. Support local.</p>
-        </div>
+        <div><h3>GugsLocalConnect</h3><p>Find local. Support local.</p></div>
       </div>
       <p class="footer-copy">© 2026 GugsLocalConnect. Built for Gugulethu.</p>
     </div>
   </footer>
+
+  <script src="data.js"></script>
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('fullname').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        password: document.getElementById('password').value,
+        role: 'BUSINESS_OWNER'
+      };
+      const button = e.target.querySelector('button[type="submit"]');
+      button.textContent = 'Creating account...';
+      button.disabled = true;
+
+      try {
+        await window.glcAPI.register(data);
+        window.location.href = 'dashboard-business.html';
+      } catch (err) {
+        alert('Signup failed: ' + err.message);
+        button.textContent = 'Create business account';
+        button.disabled = false;
+      }
+    });
+  </script>
 
 </body>
 </html>
