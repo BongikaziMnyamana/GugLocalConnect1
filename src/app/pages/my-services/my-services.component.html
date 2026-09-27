@@ -1,0 +1,22 @@
+<section class="dash-section">
+  <div class="dash-head">
+    <h1>My services</h1>
+    <a routerLink="/add-service" class="btn-primary">+ Add new service</a>
+  </div>
+
+  <p *ngIf="loading" class="loading-text">Loading...</p>
+  <div class="service-grid" *ngIf="!loading">
+    <div class="service-card" *ngFor="let s of services">
+      <div class="service-card-top">
+        <h3>{{ s.title }}</h3>
+        <span class="status active">Active</span>
+      </div>
+      <p class="service-desc">{{ s.description }}</p>
+      <p class="service-price">R{{ s.price }}</p>
+      <div class="service-actions">
+        <button class="btn-outline" (click)="remove(s.id)">Delete</button>
+      </div>
+    </div>
+    <p *ngIf="!services.length">You haven't listed any services yet.</p>
+  </div>
+</section>

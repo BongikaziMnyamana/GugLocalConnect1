@@ -1,0 +1,37 @@
+<section class="choose-section">
+  <div class="choose-inner">
+    <div class="choose-head">
+      <h1>Welcome back</h1>
+      <p class="choose-sub">How would you like to log in?</p>
+    </div>
+
+    <div class="choose-grid">
+      <a routerLink="/login/customer" class="choose-card">
+        <div class="choose-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="1.8">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          </svg>
+        </div>
+        <h3>Customer</h3>
+        <p>Find and book local services in Gugulethu.</p>
+        <span class="choose-cta">Log in as Customer →</span>
+      </a>
+
+      <a routerLink="/login/business" class="choose-card business">
+        <div class="choose-icon business">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C77B4E" stroke-width="1.8">
+            <path d="M3 21h18"/>
+            <path d="M5 21V7l7-4 7 4v14"/>
+            <path d="M9 21v-6h6v6"/>
+          </svg>
+        </div>
+        <h3>Business Owner</h3>
+        <p>Manage your business, services and inquiries.</p>
+        <span class="choose-cta business">Log in as Business →</span>
+      </a>
+    </div>
+
+    <p class="choose-footer">Don't have an account? <a routerLink="/signup">Register</a></p>
+  </div>
+</section>

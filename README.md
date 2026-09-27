@@ -1,93 +1,91 @@
-# GugsLocalConnect – Frontend
+# GugsLocalConnect – Angular Frontend
 
-A community marketplace connecting Gugulethu residents with local businesses and service providers.
+Angular rewrite of the original HTML/CSS/JS site, restyled to match your
+actual page designs, and structured to plug straight into a Spring Boot +
+PostgreSQL backend (see your architecture diagram).
 
-## What's in this folder
+## Running it
 
-19 files total:
+```bash
+npm install
+npx ng serve
+```
+Then open the address it prints (usually http://localhost:4200)
 
-- **HTML pages** – `index.html`, `login*.html`, `signup*.html`, `dashboard*.html`, `search.html`, `business.html`, `chat.html`, `booking.html`, `add-service.html`, `my-services.html`, `messages.html`
-- **Stylesheet** – `styles.css` (shared by all pages)
-- **Sample data** – `data.js`
-- **This file** – `README.md`
+## Why "log in" doesn't work yet
 
-## How to run locally
+This is expected, not a bug. Just like your original HTML site's
+`customer-login.js` / `business-login.js`, login makes a real network
+request to a backend API. Since that backend doesn't exist yet, the request
+fails and you'll see an error message on the login form. Nothing will
+work end-to-end (login, search results, bookings, messages) until your
+Spring Boot API is running and `environment.apiUrl` points at it.
 
-1. Open the folder in VS Code.
-2. Install the **Live Server** extension.
-3. Right-click `index.html` → **Open with Live Server**.
-4. The site opens in your browser and refreshes when you save.
+## Connecting to your backend
 
-Or simply double-click any `.html` file to open it in a browser.
+Set your API base URL in:
+- `src/environments/environment.ts` (dev)
+- `src/environments/environment.prod.ts` (prod)
 
-## Page flow
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080/api'
+};
+```
 
-### Customer flow
+Every service already calls this base URL — nothing else to wire up once
+your Spring Boot endpoints exist.
 
-1. `index.html` – Home
-2. `login.html` → `login-customer.html` → `dashboard.html`
-3. `search.html` → `business.html` → `chat.html` → `booking.html`
+## Structure
 
-### Business owner flow
+- `src/app/core/models` – TypeScript interfaces matching your data layer
+- `src/app/core/services` – one service per API module from your diagram
+  (auth, business, search, booking, messaging, review)
+- `src/app/core/guards/auth.guard.ts` – blocks dashboard/booking/messaging routes for logged-out users
+- `src/app/core/interceptors/auth.interceptor.ts` – attaches the JWT to every request automatically
+- `src/app/pages/*` – one component per original HTML page, styled to match the original designs
+- `src/app/shared/navbar` and `src/app/shared/footer` – shared header/footer on every page
+- `src/styles-legacy.css` – your original stylesheet plus a supplementary
+  block covering chat, booking, add-service and my-services pages, whose
+  styles were missing even in the original file (it cuts off mid-way
+  through the CSS for the chat/messages section) — added in the same
+  visual style as the rest of the site.
 
-1. `index.html` – Home
-2. `login.html` → `login-business.html` → `dashboard-business.html`
-3. `add-service.html`, `my-services.html`, `messages.html`
+## Expected API endpoints (adjust to match your Spring Boot controllers)
 
-### Signup flow
+```
+POST /api/auth/register/customer
+POST /api/auth/register/business
+POST /api/auth/login/customer
+POST /api/auth/login/business
 
-1. `signup.html` → `signup-customer.html` OR `signup-business.html`
+GET  /api/categories
+GET  /api/businesses/:id
+GET  /api/businesses/me
+PUT  /api/businesses/me
+GET  /api/businesses/me/services
+POST /api/businesses/me/services
+DELETE /api/businesses/me/services/:id
 
-## Colour palette
+GET  /api/search?q=&category=&area=
 
-| Role             | Colour     | Hex       |
-| ---------------- | ---------- | --------- |
-| Primary dark     | Indigo     | `#343B73` |
-| Primary accent   | Terracotta | `#C77B4E` |
-| Secondary accent | Sage       | `#8FA87C` |
-| Background       | Cream      | `#F5F0E8` |
-| Surface          | Off-white  | `#FDFBF7` |
-| Text             | Charcoal   | `#2E2A26` |
-| Muted            | Warm grey  | `#6B6560` |
-| Border           | Sand       | `#E8E1D5` |
+GET  /api/messages
+GET  /api/messages/with/:userId
+POST /api/messages
 
-## Fonts
+POST  /api/bookings
+GET   /api/bookings/me
+PATCH /api/bookings/:id/status
 
-- **Outfit** – headings
-- **Figtree** – body text
+GET  /api/reviews/business/:businessId
+POST /api/reviews
+```
 
-Loaded from Google Fonts via `<link>` tags in each page.
+## What still needs to be built
 
-## Connecting to the backend
-
-Sample data lives in `data.js`. To connect real API endpoints:
-
-1. Replace `window.gugsData` with actual `fetch()` calls to your Spring Boot API.
-2. See the API endpoint list provided separately.
-3. Test with Postman before wiring the frontend.
-
-## Porting to Angular
-
-Each `.html` file maps to an Angular component:
-
-| HTML file             | Angular component               |
-| --------------------- | ------------------------------- |
-| `index.html`          | `home.component.html`           |
-| `login.html`          | `login.component.html`          |
-| `login-customer.html` | `login-customer.component.html` |
-| (etc.)                | (etc.)                          |
-
-Shared `styles.css` goes into `src/styles.css` in the Angular project.
-
-Replace `<a href="page.html">` with `routerLink="/page"`.
-
-Replace hard-coded business cards with `*ngFor` over data from an Angular service.
-
-## Team
-
-**Backend:** 3 members (Spring Boot + PostgreSQL)
-**Frontend:** 3 members (Angular port + this prototype)
-
-## License
-
-Built for academic use – Cape Peninsula University of Technology, Professional Practice III (PFP362S).
+This is the Angular **frontend only** (layer 2 of your architecture
+diagram). Still needed:
+- Spring Boot API (layer 3)
+- PostgreSQL schema + row-level security (layer 4)
+- External integrations (email, push, file storage, maps) — layer 5

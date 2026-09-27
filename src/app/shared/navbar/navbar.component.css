@@ -1,0 +1,28 @@
+.logo-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--indigo);
+}
+.logo-text { color: var(--charcoal); }
+.logo-accent { color: var(--indigo); font-weight: 700; }
+.link-login {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-right: 4px;
+}
+.btn-dark {
+  background: var(--indigo);
+  color: var(--white);
+  padding: 11px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.btn-dark:hover { background: var(--indigo-dark); }

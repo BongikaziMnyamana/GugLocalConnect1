@@ -1,0 +1,34 @@
+<section class="chat-layout">
+  <aside class="chat-sidebar">
+    <h3>Conversations</h3>
+    <p style="padding: 14px 20px; font-size: 13px; color: var(--muted);">{{ otherUser?.name || 'Loading…' }}</p>
+  </aside>
+
+  <div class="chat-main">
+    <div class="chat-header">
+      <div class="chat-avatar" style="background:linear-gradient(135deg,#B4CA9E,#8FA87C);"></div>
+      <div>
+        <h4>{{ otherUser?.name || 'Conversation' }}</h4>
+        <p class="chat-status">{{ otherUser?.role === 'BUSINESS_OWNER' ? 'Business' : 'Customer' }}</p>
+      </div>
+    </div>
+
+    <div class="chat-messages">
+      <ng-container *ngFor="let m of messages; let i = index">
+        <div class="date-divider" *ngIf="showDateDivider(i)">
+          <span>{{ dateLabel(m.sentAt) }}</span>
+        </div>
+        <div class="bubble" [class.me]="isMine(m)" [class.other]="!isMine(m)">
+          <p>{{ m.content }}</p>
+          <span>{{ timeLabel(m.sentAt) }}</span>
+        </div>
+      </ng-container>
+      <p *ngIf="!messages.length" style="padding: 0 4px; color: var(--muted);">No messages yet. Say hello!</p>
+    </div>
+
+    <form class="chat-input" (ngSubmit)="send()">
+      <input type="text" [(ngModel)]="draft" name="draft" placeholder="Type a message...">
+      <button type="submit" class="btn-primary">Send</button>
+    </form>
+  </div>
+</section>
