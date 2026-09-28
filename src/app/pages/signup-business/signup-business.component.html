@@ -1,0 +1,85 @@
+<section class="auth-section">
+  <div class="auth-card">
+    <a routerLink="/signup" class="back-link">← Back</a>
+
+    <div class="auth-head">
+      <span class="auth-badge business">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C77B4E" stroke-width="2">
+          <path d="M3 21h18"/>
+          <path d="M5 21V7l7-4 7 4v14"/>
+          <path d="M9 21v-6h6v6"/>
+        </svg>
+        Business Owner
+      </span>
+      <h1>List your business</h1>
+      <p class="auth-sub">Create your account and start reaching more customers.</p>
+    </div>
+
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+      <h3 class="form-section-title">Your details</h3>
+
+      <label for="name">Full name</label>
+      <input type="text" id="name" formControlName="name" placeholder="e.g. Thandi Nkosi">
+
+      <label for="email">Email address</label>
+      <input type="email" id="email" formControlName="email" placeholder="you@example.com">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" placeholder="Create a password">
+
+      <h3 class="form-section-title">Business details</h3>
+
+      <label for="businessName">Business name</label>
+      <input type="text" id="businessName" formControlName="businessName" placeholder="e.g. Thandi's Hair Studio">
+      <label for="category">Category</label>
+      <select id="category" formControlName="category">
+        <option value="" disabled selected>Select a category</option>
+        <option *ngFor="let c of categories" [value]="c.name">{{ c.name }}</option>
+      </select>
+
+      <label for="location">Location</label>
+      <input type="text" id="location" formControlName="location" placeholder="e.g. NY1, Gugulethu">
+
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" rows="3" placeholder="Tell customers what you do"></textarea>
+
+
+      <p class="error-message" *ngIf="errorMessage" style="color:#c0392b; display:block; margin: 8px 0 0;">{{ errorMessage }}</p>
+
+      <button type="submit" class="btn-primary btn-full" [disabled]="form.invalid || loading">
+        {{ loading ? 'Creating account…' : 'Create business account' }}
+      </button>
+    </form>
+
+    <p class="auth-footer">Already have an account? <a routerLink="/login/business">Log in</a></p>
+    <p class="auth-switch">Want to book instead? <a routerLink="/signup/customer">Register as Customer</a></p>
+  </div>
+
+  <div class="auth-side">
+    <h2>Grow your business<br>in your community.</h2>
+    <p>List your services on GugsLocalConnect and reach more customers in Gugulethu. Free to start.</p>
+
+    <div class="auth-side-features">
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
+          <path d="M3 21h18"/>
+          <path d="M5 21V7l7-4 7 4v14"/>
+          <path d="M9 21v-6h6v6"/>
+        </svg>
+        <span>Free business profile</span>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>Direct customer inquiries</span>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
+          <path d="M12 2v20M2 12h20"/>
+        </svg>
+        <span>Add and manage services</span>
+      </div>
+    </div>
+  </div>
+</section>

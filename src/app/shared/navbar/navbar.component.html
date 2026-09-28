@@ -1,0 +1,26 @@
+<header class="navbar">
+  <a routerLink="/" class="logo">
+    <span class="logo-pin">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#FDFBF7" stroke-width="2">
+        <path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/>
+        <circle cx="12" cy="10" r="2.5"/>
+      </svg>
+    </span>
+    <span class="logo-text">Gugs<span class="logo-accent">LocalConnect</span></span>
+  </a>
+
+  <nav class="nav-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <a routerLink="/search" routerLinkActive="active">Browse</a>
+  </nav>
+
+  <div class="nav-actions" *ngIf="!auth.isLoggedIn()">
+    <a routerLink="/login" class="link-login">→ Log in</a>
+    <a routerLink="/signup/business" class="btn-dark">List your business</a>
+  </div>
+
+  <div class="nav-actions" *ngIf="auth.isLoggedIn()">
+        <a [routerLink]="auth.currentUser()?.role === 'BUSINESS_OWNER' ? '/dashboard/business' : '/dashboard'" class="link-login">Dashboard</a>
+    <button class="btn-dark" (click)="logout()">Log out</button>
+  </div>
+</header>

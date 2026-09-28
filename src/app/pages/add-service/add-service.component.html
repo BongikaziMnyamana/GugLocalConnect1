@@ -1,0 +1,22 @@
+<section class="form-page">
+  <div class="form-page-inner">
+    <a routerLink="/my-services" class="back-link">← Back to services</a>
+    <h1>Add new service</h1>
+    <p class="form-sub">Describe the service customers can book.</p>
+
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+      <label for="title">Service title</label>
+      <input type="text" id="title" formControlName="title" placeholder="e.g. Leak Detection">
+
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" rows="4" placeholder="Briefly describe this service"></textarea>
+
+      <label for="price">Price (ZAR)</label>
+      <input type="number" id="price" formControlName="price" placeholder="e.g. 250">
+
+      <p class="error-message" *ngIf="errorMessage" style="color:#c0392b; display:block; margin: 8px 0 0;">{{ errorMessage }}</p>
+
+      <button type="submit" class="btn-primary btn-full" [disabled]="form.invalid">Publish service</button>
+    </form>
+  </div>
+</section>

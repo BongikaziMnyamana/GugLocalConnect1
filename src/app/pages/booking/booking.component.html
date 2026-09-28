@@ -1,0 +1,46 @@
+<section class="booking-layout">
+  <div class="booking-main">
+    <a [routerLink]="['/business', businessId]" class="back-link">← Back to profile</a>
+
+    <h1>Request a booking</h1>
+    <p class="booking-sub">Fill in the details below and {{ business?.name || 'the business' }} will confirm shortly.</p>
+
+    <div *ngIf="success" class="success-message">
+      Booking request sent! You can track its status on your dashboard.
+    </div>
+
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()" *ngIf="!success">
+           <label for="serviceId">Service</label>
+      <select id="serviceId" formControlName="serviceId">
+        <option value="" disabled selected>Choose a service</option>
+        <option *ngFor="let s of services" [value]="s.id">{{ s.title }} — R{{ s.price }}</option>
+      </select>
+
+      <label for="date">Preferred date</label>
+      <input type="date" id="date" formControlName="date">
+
+      <p class="error-message" *ngIf="errorMessage" style="color:#c0392b; display:block; margin: 8px 0 0;">{{ errorMessage }}</p>
+
+      <button type="submit" class="btn-primary btn-full" [disabled]="form.invalid">Send booking request</button>
+    </form>
+  </div>
+
+  <aside class="booking-side">
+    <div class="side-card">
+      <h3>Booking summary</h3>
+      <p><strong>Business:</strong> {{ business?.name || '—' }}</p>
+      <p><strong>Category:</strong> {{ business?.category || '—' }}</p>
+      <p><strong>Rating:</strong> ★ {{ business?.rating || '—' }}</p>
+      <p><strong>Location:</strong> {{ business?.location || '—' }}</p>
+    </div>
+    <div class="side-card">
+      <h3>What happens next</h3>
+      <ol class="steps-list">
+        <li>You send the request.</li>
+        <li>The provider confirms within 1 hour.</li>
+        <li>You chat or call to agree details.</li>
+        <li>Service is completed and you can leave a review.</li>
+      </ol>
+    </div>
+  </aside>
+</section>

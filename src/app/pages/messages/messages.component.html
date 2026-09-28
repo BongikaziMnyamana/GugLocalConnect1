@@ -1,0 +1,20 @@
+<section class="chat-layout">
+  <aside class="chat-sidebar">
+    <h3>Inquiries</h3>
+    <a class="chat-item" *ngFor="let c of conversations" [routerLink]="['/chat', c.otherUserId]">
+      <div class="chat-avatar" style="background:linear-gradient(135deg,#B4CA9E,#8FA87C);"></div>
+      <div>
+        <h4>{{ c.otherUserName }}</h4>
+        <p>{{ c.lastMessage }}</p>
+      </div>
+      <span class="chat-time">{{ timeLabel(c.lastSentAt) }}</span>
+    </a>
+    <p *ngIf="!loading && !conversations.length" style="padding: 14px 20px; color: var(--muted); font-size: 14px;">No conversations yet.</p>
+  </aside>
+
+  <div class="chat-main" *ngIf="!conversations.length">
+    <div class="chat-messages">
+      <p style="color: var(--muted);">Select a conversation to start chatting.</p>
+    </div>
+  </div>
+</section>

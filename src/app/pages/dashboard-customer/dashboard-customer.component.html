@@ -1,0 +1,26 @@
+<section class="dashboard-hero">
+  <div class="dashboard-inner">
+    <h1>Hi{{ auth.currentUser() ? ', ' + auth.currentUser()?.name : '' }}</h1>
+    <p>Find trusted local services in Gugulethu.</p>
+    <a routerLink="/search" class="btn-primary">Browse services</a>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="dash-head">
+    <h2>Your recent bookings</h2>
+    <a routerLink="/search" class="link-arrow">Find more →</a>
+  </div>
+
+  <p *ngIf="loading" class="loading-text">Loading your bookings...</p>
+  <div class="booking-list" *ngIf="!loading">
+    <div class="booking-item" *ngFor="let b of bookings">
+      <div>
+        <h4>Booking #{{ b.id }}</h4>
+        <p>{{ b.date }}</p>
+      </div>
+      <span class="status status-{{ b.status.toLowerCase() }}">{{ b.status }}</span>
+    </div>
+    <p *ngIf="!bookings.length">No bookings yet. Go find a local business to support!</p>
+  </div>
+</section>

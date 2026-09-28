@@ -1,0 +1,51 @@
+<ng-container *ngIf="!loading && business">
+  <section class="profile-hero">
+    <div class="profile-hero-inner">
+      <div class="profile-avatar" style="background:linear-gradient(135deg,#B4CA9E,#8FA87C);"></div>
+      <div class="profile-head">
+        <span class="tag">{{ business.category }}</span>
+        <h1>{{ business.name }}</h1>
+        <p class="location">{{ business.location }}</p>
+        <div class="profile-meta">
+          <span class="rating">★ {{ business.rating }} <em>({{ business.reviews }} reviews)</em></span>
+          <span class="verified" *ngIf="business.verified">✓ Verified</span>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <a [routerLink]="['/chat', business.ownerId]" class="btn-primary">Message</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-layout">
+    <div class="profile-main">
+      <div class="profile-block">
+        <h2>About</h2>
+        <p>{{ business.description }}</p>
+      </div>
+
+      <div class="profile-block">
+        <h2>Reviews</h2>
+        <div class="review" *ngFor="let r of reviews">
+          <div class="review-head">
+            <strong>{{ r.authorName }}</strong>
+            <span class="rating">★ {{ r.rating }}</span>
+          </div>
+          <p>{{ r.comment }}</p>
+          <span class="review-date">{{ r.createdAt }}</span>
+        </div>
+        <p *ngIf="!reviews.length">No reviews yet.</p>
+      </div>
+    </div>
+
+    <aside class="profile-side">
+      <div class="side-card">
+        <h3>Book this business</h3>
+        <a [routerLink]="['/booking', business.id]" class="btn-primary btn-full">Request a booking</a>
+      </div>
+    </aside>
+  </section>
+</ng-container>
+
+<p *ngIf="loading">Loading…</p>
+<p *ngIf="!loading && !business">Business not found.</p>

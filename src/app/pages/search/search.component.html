@@ -1,0 +1,46 @@
+<section class="search-topbar">
+  <form class="search-box compact" (ngSubmit)="runSearch()">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="2">
+      <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+    </svg>
+    <input type="text" [(ngModel)]="q" name="q" placeholder="Search services">
+    <button type="submit">Search</button>
+  </form>
+</section>
+
+<section class="search-layout">
+  <aside class="filter-sidebar">
+    <h3>Filters</h3>
+
+    <div class="filter-group">
+      <h4>Category</h4>
+      <label *ngFor="let c of categories">
+        <input type="radio" name="category" [value]="c.name" [(ngModel)]="category" (change)="runSearch()">
+        {{ c.name }}
+      </label>
+      <label>
+        <input type="radio" name="category" value="" [(ngModel)]="category" (change)="runSearch()">
+        All categories
+      </label>
+    </div>
+  </aside>
+
+  <div class="results">
+    <div class="results-head">
+      <p><strong>{{ results.length }}</strong> results found</p>
+    </div>
+
+    <p *ngIf="loading">Loading…</p>
+    <div class="browse-grid" *ngIf="!loading">
+           <a class="business-card" *ngFor="let b of results" [routerLink]="['/business', b.id]">
+        <div class="card-placeholder">{{ b.name.charAt(0) }}</div>
+        <div class="card-body">
+          <h3>{{ b.name }} <span *ngIf="b.verified" class="verified">✓</span></h3>
+          <p>{{ b.category }} · {{ b.area }}</p>
+          <span class="rating">★ {{ b.rating }} ({{ b.reviews }})</span>
+        </div>
+      </a>
+      <p *ngIf="!results.length">No results. Try a different search.</p>
+    </div>
+  </div>
+</section>

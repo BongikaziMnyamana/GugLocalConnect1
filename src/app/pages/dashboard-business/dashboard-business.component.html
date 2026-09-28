@@ -1,0 +1,85 @@
+<section class="dashboard-hero business">
+  <div class="dashboard-inner">
+    <h1>Welcome{{ profile ? ', ' + profile.name : '' }}</h1>
+    <p>Here's your business overview.</p>
+    <a routerLink="/add-service" class="btn-primary">+ Add new service</a>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-num">{{ bookings.length }}</span>
+      <span class="stat-label">Bookings</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">{{ profile?.reviews || 0 }}</span>
+      <span class="stat-label">Reviews</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">{{ profile?.rating || '—' }}</span>
+      <span class="stat-label">Rating</span>
+    </div>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="dash-head">
+    <h2>Your business profile</h2>
+    <button class="btn-outline" (click)="toggleEdit()">{{ editingProfile ? 'Cancel' : 'Edit profile' }}</button>
+  </div>
+
+  <div *ngIf="!editingProfile">
+    <p><strong>Name:</strong> {{ profile?.name || '—' }}</p>
+    <p><strong>Location:</strong> {{ profile?.location || '—' }}</p>
+    <p><strong>Description:</strong> {{ profile?.description || '—' }}</p>
+  </div>
+
+  <form class="auth-form" [formGroup]="profileForm" (ngSubmit)="saveProfile()" *ngIf="editingProfile">
+    <label for="name">Business name</label>
+    <input type="text" id="name" formControlName="name">
+
+    <label for="location">Location</label>
+    <input type="text" id="location" formControlName="location">
+
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description" rows="3"></textarea>
+
+    <button type="submit" class="btn-primary" [disabled]="profileForm.invalid || savingProfile">
+      {{ savingProfile ? 'Saving…' : 'Save changes' }}
+    </button>
+  </form>
+</section>
+
+<section class="dash-section">
+  <div class="dash-head"><h2>Quick actions</h2></div>
+  <div class="quick-actions">
+    <a routerLink="/add-service" class="action-card">+ Add service</a>
+    <a routerLink="/my-services" class="action-card">Manage services</a>
+    <a routerLink="/messages" class="action-card">View messages</a>
+  </div>
+</section>
+
+<section class="dash-section">
+  <div class="dash-head">
+    <h2>Incoming bookings</h2>
+  </div>
+  <p *ngIf="loading" class="loading-text">Loading...</p>
+  <div class="booking-list" *ngIf="!loading">
+       <div class="booking-item" *ngFor="let b of bookings">
+      <div>
+        <h4>Booking #{{ b.id }}</h4>
+        <p>{{ b.date }}</p>
+      </div>
+      <span class="status status-{{ b.status.toLowerCase() }}">{{ b.status }}</span>
+      <div class="booking-actions" *ngIf="b.status === 'PENDING'">
+        <button class="btn-primary" (click)="updateBookingStatus(b.id, 'CONFIRMED')">Confirm</button>
+        <button class="btn-outline" (click)="updateBookingStatus(b.id, 'CANCELLED')">Decline</button>
+      </div>
+      <div class="booking-actions" *ngIf="b.status === 'CONFIRMED'">
+        <button class="btn-primary" (click)="updateBookingStatus(b.id, 'COMPLETED')">Mark completed</button>
+      </div>
+    </div>
+    <p *ngIf="!bookings.length">No bookings yet.</p>
+  </div>
+</section>
