@@ -5,8 +5,8 @@
     <div class="auth-head">
       <span class="auth-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="#343B73" stroke-width="2">
-          <circle cx="12" cy="8" r="4"/>
-          <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
         </svg>
         Customer
       </span>
@@ -20,11 +20,15 @@
 
       <label for="email">Email address</label>
       <input type="email" id="email" formControlName="email" placeholder="you@example.com">
+      
+      <label for="phone">Phone number</label>
+      <input type="tel" id="phone" formControlName="phone" placeholder="e.g. 071 234 5678">
 
       <label for="password">Password</label>
       <input type="password" id="password" formControlName="password" placeholder="Create a password">
 
-      <p class="error-message" *ngIf="errorMessage" style="color:#c0392b; display:block; margin: 8px 0 0;">{{ errorMessage }}</p>
+      <p class="error-message" *ngIf="errorMessage" style="color:#c0392b; display:block; margin: 8px 0 0;">{{
+        errorMessage }}</p>
 
       <button type="submit" class="btn-primary btn-full" [disabled]="form.invalid || loading">
         {{ loading ? 'Creating account…' : 'Create account' }}
@@ -37,25 +41,27 @@
 
   <div class="auth-side">
     <h2>Find trusted services<br>right in your community.</h2>
-    <p>Browse hairdressers, caterers, tutors, plumbers and more — all verified and reviewed by your neighbours in Gugulethu.</p>
+    <p>Browse hairdressers, caterers, tutors, plumbers and more — all verified and reviewed by your neighbours in
+      Gugulethu.</p>
 
     <div class="auth-side-features">
       <div class="feature-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+          <circle cx="11" cy="11" r="7" />
+          <line x1="16.5" y1="16.5" x2="21" y2="21" />
         </svg>
         <span>Search by category or location</span>
       </div>
       <div class="feature-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-          <path d="M9 12l2 2 4-4"/>
-          <circle cx="12" cy="12" r="9"/>
+          <path d="M9 12l2 2 4-4" />
+          <circle cx="12" cy="12" r="9" />
         </svg>
         <span>Verified businesses and reviews</span>
       </div>
       <div class="feature-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="#B4CA9E" stroke-width="2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         </svg>
         <span>Message providers directly</span>
       </div>
