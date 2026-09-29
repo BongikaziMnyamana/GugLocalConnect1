@@ -15,6 +15,7 @@ export class SignupCustomerComponent {
   form = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
+    phone: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
   errorMessage = '';
