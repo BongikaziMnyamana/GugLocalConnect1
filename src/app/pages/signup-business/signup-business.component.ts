@@ -20,6 +20,7 @@ export class SignupBusinessComponent implements OnInit {
     name: ['', Validators.required],
     businessName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
+    phone: ['', Validators.required],
     password: ['', [Validators.required, Validators.minLength(6)]],
     category: ['', Validators.required],
     location: ['', Validators.required],
@@ -33,12 +34,12 @@ export class SignupBusinessComponent implements OnInit {
     private auth: AuthService,
     private businessService: BusinessService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.businessService.getCategories().subscribe({
       next: (cats) => this.categories = cats,
-      error: () => {}
+      error: () => { }
     });
   }
 
