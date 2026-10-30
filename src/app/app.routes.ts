@@ -17,6 +17,7 @@ import { AddServiceComponent } from './pages/add-service/add-service.component';
 import { MyServicesComponent } from './pages/my-services/my-services.component';
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
+import { ContactComponent } from './pages/contact/contact.component';
 
 // Mirrors the page flow from the original README (customer flow / business flow / signup flow)
 export const routes: Routes = [
@@ -41,6 +42,8 @@ export const routes: Routes = [
 
     { path: 'add-service', component: AddServiceComponent, canActivate: [authGuard] },
   { path: 'my-services', component: MyServicesComponent, canActivate: [authGuard] },
+
+    { path: 'contact', component: ContactComponent },
 
   { path: '**', redirectTo: '' }
 ];

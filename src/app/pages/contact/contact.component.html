@@ -1,0 +1,30 @@
+<section class="contact-page">
+  <h1>Contact us</h1>
+  <p class="contact-sub">Have a question or feedback? Send us a message and we'll get back to you.</p>
+
+  <div *ngIf="success" class="success-message">
+    Thank you! Your message has been sent. We'll reply by email soon.
+  </div>
+
+  <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()" *ngIf="!success">
+    <label for="name">Your name</label>
+    <input type="text" id="name" formControlName="name">
+
+    <label for="email">Your email</label>
+    <input type="email" id="email" formControlName="email">
+
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" formControlName="subject">
+
+    <label for="message">Message</label>
+    <textarea id="message" formControlName="message" rows="5"></textarea>
+
+    <p class="error-message" *ngIf="errorMessage" style="color:#c0392b;">{{ errorMessage }}</p>
+
+    <button type="submit" class="btn-primary" [disabled]="form.invalid || sending">
+      {{ sending ? 'Sending…' : 'Send message' }}
+    </button>
+  </form>
+
+    <p class="contact-alt">You can also email us at <strong>gugslocalconnect&#64;gmail.com</strong></p>
+</section>
