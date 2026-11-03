@@ -31,15 +31,15 @@
   <h2>Featured businesses</h2>
   <p *ngIf="loading">Loading…</p>
   <div class="business-grid" *ngIf="!loading">
-        <a class="business-card" *ngFor="let b of featured" [routerLink]="['/business', b.id]">
-      <div class="card-placeholder">{{ b.name.charAt(0) }}</div>
+           <a class="business-card" *ngFor="let b of featured" [routerLink]="['/business', b.id]">
+      <img *ngIf="imageFor(b)" class="card-image" [src]="imageFor(b)" [alt]="b.name" loading="lazy" (error)="failed.add(b.id)">
+      <div class="card-placeholder" *ngIf="!imageFor(b)">{{ b.name.charAt(0) }}</div>
       <div class="card-body">
         <h3>{{ b.name }}</h3>
         <p>{{ b.category }} · {{ b.area }}</p>
         <span class="rating">★ {{ b.rating }} ({{ b.reviews }})</span>
       </div>
     </a>
-    <p *ngIf="!featured.length">No businesses yet — check back soon.</p>
   </div>
 </section>
 
