@@ -32,15 +32,15 @@
 
     <p *ngIf="loading">Loading…</p>
     <div class="browse-grid" *ngIf="!loading">
-           <a class="business-card" *ngFor="let b of results" [routerLink]="['/business', b.id]">
-        <div class="card-placeholder">{{ b.name.charAt(0) }}</div>
-        <div class="card-body">
-          <h3>{{ b.name }} <span *ngIf="b.verified" class="verified">✓</span></h3>
-          <p>{{ b.category }} · {{ b.area }}</p>
-          <span class="rating">★ {{ b.rating }} ({{ b.reviews }})</span>
-        </div>
-      </a>
-      <p *ngIf="!results.length">No results. Try a different search.</p>
+    <a class="business-card" *ngFor="let b of results" [routerLink]="['/business', b.id]">
+  <img *ngIf="imageFor(b)" class="card-image" [src]="imageFor(b)" [alt]="b.name" loading="lazy" (error)="failed.add(b.id)">
+  <div class="card-placeholder" *ngIf="!imageFor(b)">{{ b.name.charAt(0) }}</div>
+  <div class="card-body">
+    <h3>{{ b.name }} <span *ngIf="b.verified" class="verified">✓</span></h3>
+    <p>{{ b.category }} · {{ b.area }}</p>
+    <span class="rating">★ {{ b.rating }} ({{ b.reviews }})</span>
+  </div>
+</a>
     </div>
   </div>
 </section>
